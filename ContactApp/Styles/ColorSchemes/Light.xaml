@@ -1,6 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  Contact Collection Colors  -->
     <SolidColorBrush x:Key="ContactCollection.Colors.Heart" Color="#f06" />
     <SolidColorBrush x:Key="ContactCollection.Colors.UnSelectedHeart" Color="LightGray" />
     <SolidColorBrush x:Key="ContactCollection.Colors.ProfilePictureTextColor" Color="White" />
     <SolidColorBrush x:Key="ContactCollection.Colors.DataGridHorizontalLineColor" Color="LightGray" />
+
+    <!--  Controls Color  -->
+    <SolidColorBrush x:Key="TitledContentControl.BackgroundColor" Color="White" />
+    <SolidColorBrush x:Key="TitledContentControl.HoverColor" Color="#ededed" />
 </ResourceDictionary>
