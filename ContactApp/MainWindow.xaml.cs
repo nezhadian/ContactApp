@@ -1,4 +1,5 @@
 ﻿using AdonisUI.Controls;
+using ContactApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,19 @@ namespace ContactApp
     /// </summary>
     public partial class MainWindow : AdonisWindow
     {
+        public ContactViewModel ContactViewModel { get; set; }
         public MainWindow()
         {
+            ContactViewModel = new ContactViewModel();
+            ContactViewModel.ItemsCollection = new System.Collections.ObjectModel.ObservableCollection<Models.Contact>()
+            {
+                new Models.Contact(){FirstName = "Yasin",LastName="EbrahimNezhadian", IsFavorite=true, ProfilePicture = new SolidColorBrush(Colors.Red) },
+                new Models.Contact(){FirstName = "Nimar",LastName="Ahmadi", IsFavorite=false, ProfilePicture = new SolidColorBrush(Colors.Green) },
+                new Models.Contact(){FirstName = "Matin",LastName="Jahmadi", IsFavorite=true, ProfilePicture = new SolidColorBrush(Colors.Goldenrod) },
+                new Models.Contact(){FirstName = "Ahmed",LastName="Sahmadi", IsFavorite=false, ProfilePicture = new SolidColorBrush(Colors.Silver) },
+            };
+
+            DataContext = this;
             InitializeComponent();
         }
     }

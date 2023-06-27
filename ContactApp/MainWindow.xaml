@@ -20,7 +20,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <ContentControl />
+
+        <ContentControl Content="{Binding ContactViewModel}" />
+
+        <!--  Add Contact TextBox  -->
         <Grid Grid.Row="1" Margin="20">
             <TextBox adonisEx:WatermarkExtension.Watermark="{DynamicResource MainWindow.AddTextBox.WatermarkLabel}" Style="{StaticResource MainWindow.AddTextBox}" />
         </Grid>
