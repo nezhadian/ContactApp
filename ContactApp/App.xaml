@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="pack://application:,,,/AdonisUI;component/ColorSchemes/Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/AdonisUI.ClassicTheme;component/Resources.xaml" />
 
+                <ResourceDictionary Source="/Styles/ColorSchemes/Light.xaml" />
                 <ResourceDictionary Source="/Styles/IconGeometries.xaml" />
                 <ResourceDictionary Source="/Styles/GeneralStyles.xaml" />
                 <ResourceDictionary Source="/Controls/RefControlStyles.xaml" />
