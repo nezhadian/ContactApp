@@ -4,8 +4,13 @@
     <SolidColorBrush x:Key="ContactCollection.Colors.UnSelectedHeart" Color="LightGray" />
     <SolidColorBrush x:Key="ContactCollection.Colors.ProfilePictureTextColor" Color="White" />
     <SolidColorBrush x:Key="ContactCollection.Colors.DataGridHorizontalLineColor" Color="LightGray" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.TitlesColor" Color="Gray" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.ItemsDetailBackgroundColor" Color="#f0f0f0" />
 
     <!--  Controls Color  -->
     <SolidColorBrush x:Key="TitledContentControl.BackgroundColor" Color="White" />
     <SolidColorBrush x:Key="TitledContentControl.HoverColor" Color="#ededed" />
+    <SolidColorBrush x:Key="TitledContentControl.TitleColor" Color="Gray" />
+    <SolidColorBrush x:Key="TitledContentControl.ContentColor" Color="#6D6D6D" />
+
 </ResourceDictionary>

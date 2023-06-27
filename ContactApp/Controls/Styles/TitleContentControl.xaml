@@ -7,6 +7,7 @@
         <Setter Property="Padding" Value="15,7" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
         <Setter Property="Background" Value="{DynamicResource TitledContentControl.BackgroundColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource TitledContentControl.ContentColor}" />
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="FontSize" Value="14" />
 
@@ -20,7 +21,10 @@
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock FontWeight="Normal" Text="{TemplateBinding Title}" />
+                            <TextBlock
+                                FontWeight="Normal"
+                                Foreground="{DynamicResource TitledContentControl.TitleColor}"
+                                Text="{TemplateBinding Title}" />
                             <ContentPresenter
                                 Grid.Column="1"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
