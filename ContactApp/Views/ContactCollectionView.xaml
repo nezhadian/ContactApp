@@ -85,12 +85,14 @@
     </Style>
     <Style x:Key="ContactCollection.DataGridItemContainer" TargetType="DataGridRow">
         <Setter Property="Foreground" Value="{DynamicResource {x:Static adonis:Brushes.ForegroundBrush}}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ContactCollection.Colors.DataGridHorizontalLineColor}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridRow">
                     <Border
-                        x:Name="DGR_Border"
-                        Margin="{TemplateBinding Padding}"
+                        Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
@@ -125,9 +127,12 @@
                             </MultiTrigger.Setters>
                         </MultiTrigger>
 
-                        <Trigger Property="IsSelected" Value="true">
+                        <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="{DynamicResource {x:Static adonis:Brushes.Layer1HighlightBrush}}" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Padding" Value="0,5,0,0" />
                         </Trigger>
+
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -143,7 +148,7 @@
             <DataGrid
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
-                GridLinesVisibility="Horizontal"
+                GridLinesVisibility="None"
                 HeadersVisibility="None"
                 ItemContainerStyle="{StaticResource ContactCollection.DataGridItemContainer}"
                 ItemsSource="{Binding Source={StaticResource ContactCollectionView}}"
@@ -166,6 +171,8 @@
                         ElementStyle="{StaticResource ContactCollection.IsFavoriteCheckBox}"
                         IsReadOnly="True" />
                 </DataGrid.Columns>
+
+
             </DataGrid>
         </Grid>
     </DataTemplate>
