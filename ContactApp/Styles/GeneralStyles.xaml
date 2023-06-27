@@ -1,4 +1,89 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI">
+    <!--  Expander Style  -->
+    <Style x:Key="Expander.ToggleButton" TargetType="ToggleButton">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static adonis:Brushes.Layer0BackgroundBrush}}" />
+        <Setter Property="Padding" Value="10,5,10,5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <!--  columns  -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  Content  -->
+                            <ContentPresenter />
+
+                            <!--  Indicator  -->
+                            <Path
+                                x:Name="arrow"
+                                Grid.Column="1"
+                                Width="5"
+                                VerticalAlignment="Center"
+                                Data="{StaticResource IconGeometries.ArrowRight}"
+                                Fill="{DynamicResource {x:Static adonis:Brushes.Layer1HighlightBorderBrush}}"
+                                Stretch="Uniform" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static adonis:Brushes.Layer1HighlightBrush}}" />
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="arrow" Property="Data" Value="{StaticResource IconGeometries.ArrowDown}" />
+                            <Setter TargetName="arrow" Property="Width" Value="9" />
+
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Expander">
+        <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Expander">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <!--  rows  -->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <!--  Expand and collapse Toggle Button  -->
+                            <ToggleButton
+                                Foreground="{TemplateBinding Foreground}"
+                                IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                Style="{StaticResource Expander.ToggleButton}">
+                                <!--  Header  -->
+                                <ContentPresenter Content="{TemplateBinding Header}" />
+                            </ToggleButton>
+
+                            <!--  Content  -->
+
+                            <ContentPresenter x:Name="content" Grid.Row="1" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--  Hide Content When IsExpanded Set to false  -->
+                        <Trigger Property="IsExpanded" Value="False">
+                            <Setter TargetName="content" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
