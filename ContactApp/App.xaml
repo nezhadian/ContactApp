@@ -29,6 +29,7 @@
             <Color x:Key="{x:Static adonis:Colors.AccentIntenseHighlightBorderColor}">#00ce8f</Color>
             <Color x:Key="{x:Static adonis:Colors.AccentInteractionColor}">#00ce8f</Color>
             <Color x:Key="{x:Static adonis:Colors.AccentInteractionBorderColor}">#00ce8f</Color>
+            <Color x:Key="{x:Static adonis:Colors.ForegroundColor}">#333</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
