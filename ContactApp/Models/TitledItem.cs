@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ContactApp.Models
 {
-    class TitledItem : ModelsBase
+    public class TitledItem : ModelsBase
     {
         private string _Title;
         public string Title

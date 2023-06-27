@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace ContactApp.Models
 {
-    class Contact : ModelsBase
+    public class Contact : ModelsBase
     {
         #region Private Fields
         private string _firstName;

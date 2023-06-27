@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ContactApp.Models
 {
-    class ModelsBase : INotifyPropertyChanged
+    public abstract class ModelsBase : INotifyPropertyChanged
     {
 
         #region INotifyPropertyChanged Implamentation
