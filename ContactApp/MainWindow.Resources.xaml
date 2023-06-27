@@ -1,0 +1,21 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI">
+
+    <Style
+        x:Key="MainWindow.AddTextBox"
+        BasedOn="{StaticResource {x:Type TextBox}}"
+        TargetType="TextBox">
+        <Setter Property="Height" Value="34" />
+        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="17" />
+        <Setter Property="adonisEx:WatermarkExtension.IsWatermarkVisible" Value="True" />
+        <Setter Property="Padding" Value="17,0" />
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static adonis:Brushes.AccentBrush}}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}" />
+    </Style>
+
+</ResourceDictionary>
