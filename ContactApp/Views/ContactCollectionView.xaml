@@ -2,6 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:adonisConverters="clr-namespace:AdonisUI.Converters;assembly=AdonisUI"
     xmlns:controls="clr-namespace:ContactApp.Controls"
     xmlns:viewModel="clr-namespace:ContactApp.ViewModels">
 
@@ -129,7 +130,7 @@
                         </MultiTrigger>
 
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource {x:Static adonis:Brushes.Layer1HighlightBrush}}" />
+                            <Setter Property="Background" Value="{DynamicResource ContactCollection.Colors.ItemsDetailBackgroundColor}" />
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="Padding" Value="0,5,0,0" />
                         </Trigger>
@@ -139,6 +140,17 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!--  Emails And Numbers Expander Style  -->
+    <Style
+        x:Key="ContactCollection.ExpanderStyle"
+        BasedOn="{StaticResource {x:Type Expander}}"
+        TargetType="Expander">
+        <Setter Property="Background" Value="{DynamicResource ContactCollection.Colors.TitlesColor}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="500" />
+        <Setter Property="IsExpanded" Value="True" />
     </Style>
 
     <DataTemplate DataType="{x:Type viewModel:ContactViewModel}">
@@ -177,16 +189,30 @@
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <Grid Margin="0,5,0,15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
                             <StackPanel>
                                 <controls:TitleContentControl Title="First Name" Content="{Binding FirstName}" />
                                 <controls:TitleContentControl Title="Last Name" Content="{Binding LastName}" />
-                                <ContentControl>
-                                    <viewModel:TitledItemViewModel ItemsCollection="{Binding EmailsCollection}" />
-                                </ContentControl>
-                                <ContentControl>
-                                    <viewModel:TitledItemViewModel ItemsCollection="{Binding NumbersCollection}" />
-                                </ContentControl>
-
+                                <Expander
+                                    x:Name="emailExpander"
+                                    Margin="0,10,0,0"
+                                    Header="Emails"
+                                    Style="{StaticResource ContactCollection.ExpanderStyle}"
+                                    Visibility="{Binding IsEmailsEmpty, Converter={StaticResource InverseBool2VisibilityConverter}}">
+                                    <ItemsControl ItemsSource="{Binding EmailsCollection}" VirtualizingPanel.IsVirtualizing="True" />
+                                </Expander>
+                                <Expander
+                                    x:Name="numbersExpander"
+                                    Margin="0,10,0,0"
+                                    Header="Numbers"
+                                    Style="{StaticResource ContactCollection.ExpanderStyle}"
+                                    Visibility="{Binding IsNumbersEmpty, Converter={StaticResource InverseBool2VisibilityConverter}}">
+                                    <ItemsControl ItemsSource="{Binding NumbersCollection}" VirtualizingPanel.IsVirtualizing="True" />
+                                </Expander>
                             </StackPanel>
 
                         </Grid>
