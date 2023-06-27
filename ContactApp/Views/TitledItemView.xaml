@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:ContactApp.Controls"
+    xmlns:models="clr-namespace:ContactApp.Models">
+
+    <DataTemplate DataType="{x:Type models:TitledItem}">
+        <controls:TitleContentControl Title="{Binding Title}" Content="{Binding Value}" />
+    </DataTemplate>
+
+</ResourceDictionary>
