@@ -12,6 +12,8 @@
 
                 <ResourceDictionary Source="/Styles/ColorSchemes/Light.xaml" />
                 <ResourceDictionary Source="/Styles/IconGeometries.xaml" />
+
+                <ResourceDictionary Source="/Converters/RefConverters.xaml" />
                 <ResourceDictionary Source="/Styles/GeneralStyles.xaml" />
                 <ResourceDictionary Source="/Controls/RefControlStyles.xaml" />
                 <ResourceDictionary Source="/Views/RefViews.xaml" />
