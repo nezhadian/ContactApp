@@ -7,19 +7,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace ContactApp.ViewModels
 {
-    public interface ICollectionViewModel
-    {
-        public bool AddItemCanExecute(object parameters);
-        public void AddItemExecute(object paramters);
-
-        public bool DeleteSelectedItemCanExecute(object parameters);
-        public void DeleteSelectedItemExecute(object paramters);
-    }
-    public class CollectionViewModel<T> : ICollectionViewModel,INotifyPropertyChanged
+    public class CollectionViewModel<T> : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged Implamentation
         public event PropertyChangedEventHandler PropertyChanged;
@@ -39,74 +30,35 @@ namespace ContactApp.ViewModels
             {
                 _selItem = value;
                 OnPropertyChanged();
+                DeleteSelectedItemCommand.RaiseCanExecuteChanged();
             }
         }
 
-        public AddItemCommand AddItemCommand { get; set; }
-        public DeleteSelectedItemCommand DeleteSelectedItemCommand { set; get; }
+        public static CustomCommand DeleteSelectedItemCommand { set; get; }
+        public static CustomCommand AddItemCommand { set; get; }
 
         public CollectionViewModel()
         {
-            AddItemCommand = new AddItemCommand(this);
-            DeleteSelectedItemCommand = new DeleteSelectedItemCommand(this);
+            DeleteSelectedItemCommand = new CustomCommand(OnDeleteCommandExecuted,DeleteCommandCanExecute);
+            AddItemCommand = new CustomCommand(OnAddCommandExecuted, AddCommandCanExecute);
         }
 
-        public bool AddItemCanExecute(object parameters)
+        protected virtual bool AddCommandCanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return parameter != null && parameter is T;
         }
-        public void AddItemExecute(object paramters)
+        protected virtual void OnAddCommandExecuted(object parameter)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool DeleteSelectedItemCanExecute(object parameters)
-        {
-            throw new NotImplementedException();
-        }
-        public void DeleteSelectedItemExecute(object paramters)
-        {
-            throw new NotImplementedException();
+            ItemsCollection.Add((T)parameter);
         }
 
-    }
-
-    public class DeleteSelectedItemCommand : ICommand
-    {
-        ICollectionViewModel collectionVM;
-        public DeleteSelectedItemCommand(ICollectionViewModel collectionVM)
+        protected virtual bool DeleteCommandCanExecute(object parameter)
         {
-            this.collectionVM = collectionVM;
+            return SelectedItem != null;
         }
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        protected virtual void OnDeleteCommandExecuted(object parameter)
         {
-            return collectionVM.DeleteSelectedItemCanExecute(parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            collectionVM.DeleteSelectedItemExecute(parameter);
-        }
-    }
-    public class AddItemCommand : ICommand
-    {
-        ICollectionViewModel collectionVM;
-        public AddItemCommand(ICollectionViewModel collectionVM)
-        {
-            this.collectionVM = collectionVM;
-        }
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
-        {
-            return collectionVM.AddItemCanExecute(parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            collectionVM.AddItemExecute(parameter);
+            ItemsCollection.Remove(SelectedItem);
         }
     }
 }
