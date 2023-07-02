@@ -6,6 +6,8 @@
     <SolidColorBrush x:Key="ContactCollection.Colors.DataGridHorizontalLineColor" Color="LightGray" />
     <SolidColorBrush x:Key="ContactCollection.Colors.TitlesColor" Color="Gray" />
     <SolidColorBrush x:Key="ContactCollection.Colors.ItemsDetailBackgroundColor" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.DeleteBinColor" Color="#ff6767" />
+
 
     <!--  Controls Color  -->
     <SolidColorBrush x:Key="TitledContentControl.BackgroundColor" Color="White" />
@@ -16,6 +18,8 @@
     <!--  Icon Button Colors  -->
     <SolidColorBrush x:Key="IconButton.Hover" Color="#ddd" />
     <SolidColorBrush x:Key="IconButton.Pressed" Color="#ccc" />
+
+
 
 
 </ResourceDictionary>
