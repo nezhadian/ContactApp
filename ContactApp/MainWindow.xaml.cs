@@ -39,5 +39,11 @@ namespace ContactApp
             DataContext = this;
             InitializeComponent();
         }
+
+        public static void NavigateToPage(Page page)
+        {
+            var instance = (MainWindow)Application.Current.MainWindow;
+            instance.CurrentPage = page;
+        }
     }
 }
