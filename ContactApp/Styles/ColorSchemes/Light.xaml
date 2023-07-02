@@ -26,6 +26,9 @@
     <Color x:Key="IconTextButton.Shadow">#D7D7D7</Color>
     <SolidColorBrush x:Key="IconTextButton.TextColor" Color="#444444" />
 
+    <!--  Edit Contact Item Page Colors  -->
+    <SolidColorBrush x:Key="EditContactPage.Colors.ProfilePicturePlusIconColor" Color="White" />
+
 
 
 </ResourceDictionary>
