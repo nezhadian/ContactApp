@@ -9,26 +9,17 @@ namespace ContactApp.ViewModels
 {
     public class ContactViewModel : CollectionViewModel<Contact>
     {
-        public SaveCommand SaveCommand { get; set; }
-
+        public static CustomCommand SaveCommand { set; get; }
         public ContactViewModel()
         {
-            SaveCommand = new SaveCommand(this);
-        }
-    }
-    public class SaveCommand : ContextCommand<ContactViewModel>
-    {
-        public SaveCommand(ContactViewModel context)
-        {
-            Context = context;
+            SaveCommand = new CustomCommand(OnSaveExecuted, SaveCanExecute);
         }
 
-        public override bool CanExecute(ContactViewModel context, object parameter)
+        private bool SaveCanExecute(object parameter)
         {
             throw new NotImplementedException();
         }
-
-        public override void Execute(ContactViewModel context, object parameter)
+        private void OnSaveExecuted(object parameter)
         {
             throw new NotImplementedException();
         }
