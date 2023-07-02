@@ -42,10 +42,12 @@
         </StackPanel>
     </DataTemplate>
 
+
     <!--  IsFavorite Template  -->
     <Style x:Key="ContactCollection.IsFavoriteCheckBox" TargetType="CheckBox">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
+
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBox">
                     <Path
@@ -166,6 +168,7 @@
                 ItemContainerStyle="{StaticResource ContactCollection.DataGridItemContainer}"
                 ItemsSource="{Binding Source={StaticResource ContactCollectionView}}"
                 RowDetailsVisibilityMode="VisibleWhenSelected"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 SelectionMode="Single">
                 <DataGrid.Columns>
                     <!--  Profile Picture  -->
@@ -187,6 +190,7 @@
                 </DataGrid.Columns>
 
                 <DataGrid.RowDetailsTemplate>
+                    <!--  Details  -->
                     <DataTemplate>
                         <Grid Margin="0,5,0,15">
                             <Grid.RowDefinitions>
@@ -215,6 +219,18 @@
                                 </Expander>
                             </StackPanel>
 
+                            <Grid Grid.Row="1" Margin="10,5">
+                                <Button
+                                    HorizontalAlignment="Right"
+                                    Command="{x:Static viewModel:ContactViewModel.DeleteSelectedItemCommand}"
+                                    Style="{StaticResource IconButtonStyle}">
+                                    <Path
+                                        Width="14"
+                                        Data="{StaticResource IconGeometries.Delete}"
+                                        Fill="{DynamicResource ContactCollection.Colors.DeleteBinColor}"
+                                        Stretch="Uniform" />
+                                </Button>
+                            </Grid>
                         </Grid>
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
