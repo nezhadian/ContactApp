@@ -19,5 +19,30 @@ namespace ContactApp.Controls
             DependencyProperty.Register("IconData", typeof(Geometry), typeof(IconTextContent), new PropertyMetadata());
 
 
+        public Brush IconBrush
+        {
+            get { return (Brush)GetValue(IconBrushProperty); }
+            set { SetValue(IconBrushProperty, value); }
+        }
+
+        public static readonly DependencyProperty IconBrushProperty =
+            DependencyProperty.Register("IconBrush", typeof(Brush), typeof(IconTextContent), new PropertyMetadata());
+
+
+
+        public double IconWidth
+        {
+            get { return (double)GetValue(IconWidthProperty); }
+            set { SetValue(IconWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty IconWidthProperty =
+            DependencyProperty.Register("IconWidth", typeof(double), typeof(IconTextContent), new PropertyMetadata(15d));
+
+
+
+
+
+
     }
 }

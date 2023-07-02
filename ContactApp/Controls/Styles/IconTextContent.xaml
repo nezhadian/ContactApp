@@ -4,24 +4,28 @@
     xmlns:controls="clr-namespace:ContactApp.Controls">
 
     <Style TargetType="controls:IconTextContent">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:IconTextContent">
                     <Grid>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="10" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Path
-                                Width="15"
-                                Data="{TemplateBinding IconData}"
-                                Fill="{DynamicResource StepData.IconColor}"
-                                FlowDirection="LeftToRight"
-                                Stretch="Uniform" />
-                            <ContentPresenter Grid.Column="2" Margin="0,3" />
-                        </Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Path
+                            Width="{TemplateBinding IconWidth}"
+                            Data="{TemplateBinding IconData}"
+                            Fill="{TemplateBinding IconBrush}"
+                            FlowDirection="LeftToRight"
+                            Stretch="Uniform" />
+                        <ContentPresenter
+                            Grid.Column="2"
+                            Margin="0,3"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
