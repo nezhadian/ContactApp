@@ -228,7 +228,7 @@
                                 </Expander>
                             </StackPanel>
 
-                            <Grid Grid.Row="1" Margin="10,5">
+                            <Grid Grid.Row="1" Margin="10,10,10,0">
                                 <Button
                                     HorizontalAlignment="Right"
                                     Command="{x:Static viewModel:ContactViewModel.DeleteSelectedItemCommand}"
@@ -238,6 +238,16 @@
                                         Data="{StaticResource IconGeometries.Delete}"
                                         Fill="{DynamicResource ContactCollection.Colors.DeleteBinColor}"
                                         Stretch="Uniform" />
+                                </Button>
+                                <Button
+                                    HorizontalAlignment="Center"
+                                    Command="{x:Static viewModel:ContactViewModel.EditSelectedItem}"
+                                    Style="{StaticResource IconTextButton.Style}">
+                                    <controls:IconTextContent
+                                        Content="Edit"
+                                        IconBrush="{DynamicResource IconTextButton.TextColor}"
+                                        IconData="{StaticResource IconGeometries.Edit}"
+                                        IconWidth="14" />
                                 </Button>
                             </Grid>
                         </Grid>
