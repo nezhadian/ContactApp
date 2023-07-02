@@ -9,5 +9,9 @@
     <System:Double x:Key="IconButtonStyle.Dimension">34</System:Double>
     <CornerRadius x:Key="IconButtonStyle.CornerRadius">15</CornerRadius>
 
+    <System:Double x:Key="IconTextButton.Height">34</System:Double>
+    <CornerRadius x:Key="IconTextButton.CornerRadius">17</CornerRadius>
+    <System:Double x:Key="IconTextButton.MinWidth">100</System:Double>
+
 
 </ResourceDictionary>

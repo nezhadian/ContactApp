@@ -19,6 +19,12 @@
     <SolidColorBrush x:Key="IconButton.Hover" Color="#ddd" />
     <SolidColorBrush x:Key="IconButton.Pressed" Color="#ccc" />
 
+    <!--  Icon Text Button Colors  -->
+    <SolidColorBrush x:Key="IconTextButton.Background" Color="White" />
+    <SolidColorBrush x:Key="IconTextButton.Hover" Color="#ccc" />
+    <SolidColorBrush x:Key="IconTextButton.Pressed" Color="#ddd" />
+    <Color x:Key="IconTextButton.Shadow">#D7D7D7</Color>
+    <SolidColorBrush x:Key="IconTextButton.TextColor" Color="#444444" />
 
 
 
