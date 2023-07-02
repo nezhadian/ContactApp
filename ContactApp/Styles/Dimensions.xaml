@@ -6,4 +6,8 @@
     <System:Double x:Key="ContactCollection.ProfilePictureDimension">42</System:Double>
     <CornerRadius x:Key="ContactCollection.ProfilePictureCornerRadius">15</CornerRadius>
 
+    <System:Double x:Key="IconButtonStyle.Dimension">34</System:Double>
+    <CornerRadius x:Key="IconButtonStyle.CornerRadius">15</CornerRadius>
+
+
 </ResourceDictionary>
