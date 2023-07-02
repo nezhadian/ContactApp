@@ -46,20 +46,29 @@
     <!--  IsFavorite Template  -->
     <Style x:Key="ContactCollection.IsFavoriteCheckBox" TargetType="CheckBox">
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
-
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBox">
-                    <Path
-                        x:Name="icon"
-                        Width="18"
-                        Data="{StaticResource IconGeometries.Heart}"
-                        Fill="{DynamicResource ContactCollection.Colors.UnSelectedHeart}"
-                        Stretch="Uniform" />
+                    <Border Background="{TemplateBinding Background}" CornerRadius="{StaticResource IconButtonStyle.CornerRadius}">
+                        <Path
+                            x:Name="icon"
+                            Width="18"
+                            Data="{StaticResource IconGeometries.Heart}"
+                            Fill="{DynamicResource ContactCollection.Colors.UnSelectedHeart}"
+                            Stretch="Uniform" />
+                    </Border>
+
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
                             <Setter TargetName="icon" Property="Fill" Value="{DynamicResource ContactCollection.Colors.Heart}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource IconButton.Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource IconButton.Pressed}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
