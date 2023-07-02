@@ -1,7 +1,9 @@
 ﻿using AdonisUI.Controls;
+using ContactApp.Pages;
 using ContactApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,17 +24,17 @@ namespace ContactApp
     /// </summary>
     public partial class MainWindow : AdonisWindow
     {
-        public ContactViewModel ContactViewModel { get; set; }
+        public Page CurrentPage
+        {
+            get { return (Page)GetValue(CurrentPageProperty); }
+            set { SetValue(CurrentPageProperty, value); }
+        }
+        public static readonly DependencyProperty CurrentPageProperty =
+            DependencyProperty.Register("CurrentPage", typeof(Page), typeof(MainWindow), new PropertyMetadata());
+
         public MainWindow()
         {
-            ContactViewModel = new ContactViewModel();
-            ContactViewModel.ItemsCollection = new System.Collections.ObjectModel.ObservableCollection<Models.Contact>()
-            {
-                new Models.Contact(){FirstName = "Yasin",LastName="EbrahimNezhadian", IsFavorite=true, ProfilePicture = new SolidColorBrush(Colors.Red) },
-                new Models.Contact(){FirstName = "Nimar",LastName="Ahmadi", IsFavorite=false, ProfilePicture = new SolidColorBrush(Colors.Green) },
-                new Models.Contact(){FirstName = "Matin",LastName="Jahmadi", IsFavorite=true, ProfilePicture = new SolidColorBrush(Colors.Goldenrod) },
-                new Models.Contact(){FirstName = "Ahmed",LastName="Sahmadi", IsFavorite=false, ProfilePicture = new SolidColorBrush(Colors.Silver) },
-            };
+            CurrentPage = new HomePage();
 
             DataContext = this;
             InitializeComponent();
