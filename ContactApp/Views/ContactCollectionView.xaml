@@ -208,12 +208,12 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel>
-                                <controls:TitleContentControl Title="First Name" Content="{Binding FirstName}" />
-                                <controls:TitleContentControl Title="Last Name" Content="{Binding LastName}" />
+                                <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.FirstName}" Content="{Binding FirstName}" />
+                                <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.LastName}" Content="{Binding LastName}" />
                                 <Expander
                                     x:Name="emailExpander"
                                     Margin="0,10,0,0"
-                                    Header="Emails"
+                                    Header="{DynamicResource ContactCollection.Texts.EmailsHeader}"
                                     Style="{StaticResource ContactCollection.ExpanderStyle}"
                                     Visibility="{Binding IsEmailsEmpty, Converter={StaticResource InverseBool2VisibilityConverter}}">
                                     <ItemsControl ItemsSource="{Binding EmailsCollection}" VirtualizingPanel.IsVirtualizing="True" />
@@ -221,7 +221,7 @@
                                 <Expander
                                     x:Name="numbersExpander"
                                     Margin="0,10,0,0"
-                                    Header="Numbers"
+                                    Header="{DynamicResource ContactCollection.Texts.NumbersHeader}"
                                     Style="{StaticResource ContactCollection.ExpanderStyle}"
                                     Visibility="{Binding IsNumbersEmpty, Converter={StaticResource InverseBool2VisibilityConverter}}">
                                     <ItemsControl ItemsSource="{Binding NumbersCollection}" VirtualizingPanel.IsVirtualizing="True" />
@@ -244,7 +244,7 @@
                                     Command="{x:Static viewModel:ContactViewModel.EditSelectedItem}"
                                     Style="{StaticResource IconTextButton.Style}">
                                     <controls:IconTextContent
-                                        Content="Edit"
+                                        Content="{DynamicResource ContactCollection.Texts.EditButtonText}"
                                         IconBrush="{DynamicResource IconTextButton.TextColor}"
                                         IconData="{StaticResource IconGeometries.Edit}"
                                         IconWidth="14" />

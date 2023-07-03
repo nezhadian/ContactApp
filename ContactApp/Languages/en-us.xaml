@@ -4,4 +4,9 @@
     xmlns:System="clr-namespace:System;assembly=System.Runtime">
 
     <System:String x:Key="HomePage.AddTextBox.WatermarkLabel">Write Full Name</System:String>
+    <System:String x:Key="ContactCollection.Texts.FirstName">First Name</System:String>
+    <System:String x:Key="ContactCollection.Texts.LastName">Last Name</System:String>
+    <System:String x:Key="ContactCollection.Texts.EmailsHeader">Emails</System:String>
+    <System:String x:Key="ContactCollection.Texts.NumbersHeader">Numbers</System:String>
+    <System:String x:Key="ContactCollection.Texts.EditButtonText">Edit</System:String>
 </ResourceDictionary>
