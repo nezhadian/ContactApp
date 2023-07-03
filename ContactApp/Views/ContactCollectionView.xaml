@@ -158,7 +158,7 @@
         x:Key="ContactCollection.ExpanderStyle"
         BasedOn="{StaticResource {x:Type Expander}}"
         TargetType="Expander">
-        <Setter Property="Background" Value="{DynamicResource ContactCollection.Colors.TitlesColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource ContactCollection.Colors.TitlesColor}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="500" />
         <Setter Property="IsExpanded" Value="True" />
