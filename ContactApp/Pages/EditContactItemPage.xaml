@@ -119,7 +119,6 @@
 
             </Grid>
         </DataTemplate>
-
         <Style x:Key="EditContactPage.TitledItemsContainer" TargetType="ListBoxItem">
             <Setter Property="Padding" Value="15,7" />
             <Setter Property="FontSize" Value="14" />
@@ -144,6 +143,16 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style
+            x:Key="EditContactPage.CollectionsAddButton"
+            BasedOn="{StaticResource IconButtonStyle}"
+            TargetType="Button">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="15,5,15,0" />
+            <Setter Property="Background" Value="#eee" />
         </Style>
 
 
@@ -207,20 +216,42 @@
                 Margin="0,10,0,0"
                 Header="Emails"
                 Style="{StaticResource ContactCollection.ExpanderStyle}">
-                <ListBox
-                    ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
-                    ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
-                    ItemsSource="{Binding EmailsCollection}" />
+                <StackPanel>
+                    <ListBox
+                        ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
+                        ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
+                        ItemsSource="{Binding EmailsCollection}" />
+
+                    <Button Style="{StaticResource EditContactPage.CollectionsAddButton}">
+                        <Path
+                            Width="14"
+                            Data="{StaticResource IconGeometries.Plus}"
+                            Fill="Gray"
+                            Stretch="Uniform" />
+                    </Button>
+                </StackPanel>
             </Expander>
 
             <Expander
                 Margin="0,10,0,0"
                 Header="Numbers"
                 Style="{StaticResource ContactCollection.ExpanderStyle}">
-                <ListBox
-                    ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
-                    ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
-                    ItemsSource="{Binding NumbersCollection}" />
+                <StackPanel>
+                    <ListBox
+                        ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
+                        ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
+                        ItemsSource="{Binding NumbersCollection}" />
+
+                    <Button Style="{StaticResource EditContactPage.CollectionsAddButton}">
+                        <Path
+                            Width="14"
+                            Data="{StaticResource IconGeometries.Plus}"
+                            Fill="Gray"
+                            Stretch="Uniform" />
+                    </Button>
+
+                </StackPanel>
+
             </Expander>
 
 
