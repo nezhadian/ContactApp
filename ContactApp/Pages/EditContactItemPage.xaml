@@ -5,6 +5,7 @@
     xmlns:controls="clr-namespace:ContactApp.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:ContactApp.Models"
     Title="EditContactItemPage"
     d:DesignHeight="600"
     d:DesignWidth="400"
@@ -12,6 +13,8 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+
+        <!--  Header Style  -->
         <Style x:Key="EditContactPage.ProfilePictureButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="{StaticResource ContactCollection.ProfilePictureDimension}" />
             <Setter Property="Height" Value="{StaticResource ContactCollection.ProfilePictureDimension}" />
@@ -92,9 +95,61 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!--  Properties Style  -->
+        <DataTemplate x:Key="EditContactPage.EditableTitledItem" DataType="{x:Type models:TitledItem}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox
+                    FontWeight="Normal"
+                    Foreground="{DynamicResource TitledContentControl.TitleColor}"
+                    Style="{StaticResource SimpleTextBoxStyle}"
+                    Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    FontWeight="Medium"
+                    Foreground="{DynamicResource TitledContentControl.ContentColor}"
+                    Style="{StaticResource SimpleTextBoxStyle}"
+                    Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
+
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="EditContactPage.TitledItemsContainer" TargetType="ListBoxItem">
+            <Setter Property="Padding" Value="15,7" />
+            <Setter Property="FontSize" Value="14" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource TitledContentControl.HoverColor}" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
     </Page.Resources>
 
-    <Grid Margin="10,40,10,0">
+    <Grid Margin="0,40,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -102,7 +157,7 @@
         </Grid.RowDefinitions>
 
         <!--  Header  -->
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Margin="10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="10" />
@@ -131,8 +186,46 @@
         </Grid>
 
         <!--  Edit Properties  -->
+        <StackPanel Grid.Row="1" Margin="0,10,0,0">
+            <!--  First Name  -->
+            <controls:TitleContentControl Title="First Name">
+                <TextBox
+                    Foreground="{DynamicResource TitledContentControl.ContentColor}"
+                    Style="{StaticResource SimpleTextBoxStyle}"
+                    Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
+            </controls:TitleContentControl>
+
+            <!--  Last Name  -->
+            <controls:TitleContentControl Title="Last Name">
+                <TextBox
+                    Foreground="{DynamicResource TitledContentControl.ContentColor}"
+                    Style="{StaticResource SimpleTextBoxStyle}"
+                    Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+            </controls:TitleContentControl>
+
+            <Expander
+                Margin="0,10,0,0"
+                Header="Emails"
+                Style="{StaticResource ContactCollection.ExpanderStyle}">
+                <ListBox
+                    ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
+                    ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
+                    ItemsSource="{Binding EmailsCollection}" />
+            </Expander>
+
+            <Expander
+                Margin="0,10,0,0"
+                Header="Numbers"
+                Style="{StaticResource ContactCollection.ExpanderStyle}">
+                <ListBox
+                    ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
+                    ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
+                    ItemsSource="{Binding NumbersCollection}" />
+            </Expander>
 
 
+
+        </StackPanel>
         <!--  Buttons  -->
 
     </Grid>
