@@ -2,6 +2,7 @@
     x:Class="ContactApp.Pages.EditContactItemPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:AdonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
     xmlns:controls="clr-namespace:ContactApp.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -152,21 +153,24 @@
             <Setter Property="Width" Value="100" />
             <Setter Property="Height" Value="30" />
             <Setter Property="Margin" Value="15,5,15,0" />
-            <Setter Property="Background" Value="#eee" />
+            <Setter Property="Background" Value="{DynamicResource EditContactPage.Colors.AddButtonBackground}" />
         </Style>
 
 
     </Page.Resources>
 
-    <Grid Margin="0,40,0,0">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <!--  Header  -->
-        <Grid Grid.Row="0" Margin="10,0">
+        <Grid
+            Grid.Row="0"
+            Margin="10,0"
+            VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="10" />
@@ -195,68 +199,74 @@
         </Grid>
 
         <!--  Edit Properties  -->
-        <StackPanel Grid.Row="1" Margin="0,10,0,0">
-            <!--  First Name  -->
-            <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.FirstName}">
-                <TextBox
-                    Foreground="{DynamicResource TitledContentControl.ContentColor}"
-                    Style="{StaticResource SimpleTextBoxStyle}"
-                    Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
-            </controls:TitleContentControl>
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="0,10,0,0"
+            AdonisEx:ScrollViewerExtension.VerticalScrollBarPlacement="Overlay"
+            VerticalScrollBarVisibility="Visible">
+            <StackPanel>
+                <!--  First Name  -->
+                <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.FirstName}">
+                    <TextBox
+                        Foreground="{DynamicResource TitledContentControl.ContentColor}"
+                        Style="{StaticResource SimpleTextBoxStyle}"
+                        Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
+                </controls:TitleContentControl>
 
-            <!--  Last Name  -->
-            <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.LastName}">
-                <TextBox
-                    Foreground="{DynamicResource TitledContentControl.ContentColor}"
-                    Style="{StaticResource SimpleTextBoxStyle}"
-                    Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
-            </controls:TitleContentControl>
+                <!--  Last Name  -->
+                <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.LastName}">
+                    <TextBox
+                        Foreground="{DynamicResource TitledContentControl.ContentColor}"
+                        Style="{StaticResource SimpleTextBoxStyle}"
+                        Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+                </controls:TitleContentControl>
 
-            <Expander
-                Margin="0,5,0,0"
-                Header="{DynamicResource ContactCollection.Texts.EmailsHeader}"
-                Style="{StaticResource ContactCollection.ExpanderStyle}">
-                <StackPanel>
-                    <ListBox
-                        ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
-                        ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
-                        ItemsSource="{Binding EmailsCollection}" />
+                <Expander
+                    Margin="0,5,0,0"
+                    Header="{DynamicResource ContactCollection.Texts.EmailsHeader}"
+                    Style="{StaticResource ContactCollection.ExpanderStyle}">
+                    <StackPanel>
+                        <ListBox
+                            ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
+                            ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
+                            ItemsSource="{Binding EmailsCollection}" />
 
-                    <Button Style="{StaticResource EditContactPage.CollectionsAddButton}">
-                        <Path
-                            Width="14"
-                            Data="{StaticResource IconGeometries.Plus}"
-                            Fill="Gray"
-                            Stretch="Uniform" />
-                    </Button>
-                </StackPanel>
-            </Expander>
+                        <Button Click="AddNewEmail_Click" Style="{StaticResource EditContactPage.CollectionsAddButton}">
+                            <Path
+                                Width="14"
+                                Data="{StaticResource IconGeometries.Plus}"
+                                Fill="{DynamicResource EditContactPage.Colors.AddButtonIconColor}"
+                                Stretch="Uniform" />
+                        </Button>
+                    </StackPanel>
+                </Expander>
 
-            <Expander
-                Margin="0,10,0,0"
-                Header="{DynamicResource ContactCollection.Texts.NumbersHeader}"
-                Style="{StaticResource ContactCollection.ExpanderStyle}">
-                <StackPanel>
-                    <ListBox
-                        ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
-                        ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
-                        ItemsSource="{Binding NumbersCollection}" />
+                <Expander
+                    Margin="0,10,0,0"
+                    Header="{DynamicResource ContactCollection.Texts.NumbersHeader}"
+                    Style="{StaticResource ContactCollection.ExpanderStyle}">
+                    <StackPanel>
+                        <ListBox
+                            ItemContainerStyle="{StaticResource EditContactPage.TitledItemsContainer}"
+                            ItemTemplate="{StaticResource EditContactPage.EditableTitledItem}"
+                            ItemsSource="{Binding NumbersCollection}" />
 
-                    <Button Style="{StaticResource EditContactPage.CollectionsAddButton}">
-                        <Path
-                            Width="14"
-                            Data="{StaticResource IconGeometries.Plus}"
-                            Fill="Gray"
-                            Stretch="Uniform" />
-                    </Button>
+                        <Button Click="AddNewNumber_Click" Style="{StaticResource EditContactPage.CollectionsAddButton}">
+                            <Path
+                                Width="14"
+                                Data="{StaticResource IconGeometries.Plus}"
+                                Fill="{DynamicResource EditContactPage.Colors.AddButtonIconColor}"
+                                Stretch="Uniform" />
+                        </Button>
 
-                </StackPanel>
+                    </StackPanel>
 
-            </Expander>
+                </Expander>
 
 
 
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
         <!--  Buttons  -->
 
     </Grid>

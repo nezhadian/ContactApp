@@ -4,7 +4,7 @@
     <SolidColorBrush x:Key="ContactCollection.Colors.UnSelectedHeart" Color="LightGray" />
     <SolidColorBrush x:Key="ContactCollection.Colors.ProfilePictureTextColor" Color="White" />
     <SolidColorBrush x:Key="ContactCollection.Colors.DataGridHorizontalLineColor" Color="LightGray" />
-    <SolidColorBrush x:Key="ContactCollection.Colors.TitlesColor" Color="Gray" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.TitlesColor" Color="#656565" />
     <SolidColorBrush x:Key="ContactCollection.Colors.ItemsDetailBackgroundColor" Color="#f0f0f0" />
     <SolidColorBrush x:Key="ContactCollection.Colors.DeleteBinColor" Color="#ff6767" />
 
@@ -28,6 +28,8 @@
 
     <!--  Edit Contact Item Page Colors  -->
     <SolidColorBrush x:Key="EditContactPage.Colors.ProfilePicturePlusIconColor" Color="White" />
+    <SolidColorBrush x:Key="EditContactPage.Colors.AddButtonBackground" Color="#eee" />
+    <SolidColorBrush x:Key="EditContactPage.Colors.AddButtonIconColor" Color="Gray" />
 
 
 
