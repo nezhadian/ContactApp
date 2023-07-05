@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI">
+    xmlns:System="clr-namespace:System;assembly=System.Runtime"
+    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI">
+
     <!--  Expander Style  -->
     <Style x:Key="Expander.ToggleButton" TargetType="ToggleButton">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -209,6 +212,39 @@
         </Setter>
     </Style>
 
+    <!--  Base Button  -->
+    <CornerRadius x:Key="Buttons.CornerRadius">17</CornerRadius>
+    <System:Double x:Key="Buttons.Height">34</System:Double>
+
+    <Style
+        x:Key="Buttons.Base"
+        BasedOn="{StaticResource {x:Type Button}}"
+        TargetType="Button">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="{StaticResource Buttons.Height}" />
+        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="{StaticResource Buttons.CornerRadius}" />
+        <Setter Property="Cursor" Value="Hand" />
+
+    </Style>
+
+    <!--  CTA Button  -->
+    <Style
+        x:Key="Buttons.CTA"
+        BasedOn="{StaticResource {x:Static adonis:Styles.AccentButton}}"
+        TargetType="Button">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="{StaticResource Buttons.Height}" />
+        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="{StaticResource Buttons.CornerRadius}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Padding" Value="{adonis:Space 4, 0}" />
+    </Style>
+    <!--  Secondary Buttons  -->
+    <Style
+        x:Key="Buttons.Secondary"
+        BasedOn="{StaticResource Buttons.Base}"
+        TargetType="Button">
+        <Setter Property="Padding" Value="{adonis:Space 3, 0}" />
+    </Style>
 
 
 
