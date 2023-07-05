@@ -45,14 +45,11 @@ namespace ContactApp.ViewModels
 
         protected virtual bool AddCommandCanExecute(object parameter)
         {
-            return true;
+            return parameter != null && parameter is T;
         }
         protected virtual void OnAddCommandExecuted(object parameter)
         {
-            if (parameter is T)
-                ItemsCollection.Add((T)parameter);
-            else
-                ItemsCollection.Add(default(T));
+            ItemsCollection.Add((T)parameter);
         }
 
         protected virtual bool DeleteCommandCanExecute(object parameter)
