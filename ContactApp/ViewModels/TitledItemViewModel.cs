@@ -8,23 +8,11 @@ using System.Threading.Tasks;
 
 namespace ContactApp.ViewModels
 {
-    class TitledItemViewModel : CollectionViewModel<TitledItem>
+    public class TitledItemViewModel : CollectionViewModel<TitledItem>
     {
-
-        private string _Title;
-        public string Title
+        public TitledItemViewModel()
         {
-            get => _Title;
-            set
-            {
-                _Title = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public TitledItemViewModel(ObservableCollection<TitledItem> collection)
-        {
-            ItemsCollection = collection;
+            ItemsCollection = new ObservableCollection<TitledItem>();
         }
 
     }
