@@ -228,7 +228,7 @@
                             <Grid Grid.Row="1" Margin="10,10,10,0">
                                 <Button
                                     HorizontalAlignment="Right"
-                                    Command="{x:Static viewModel:ContactViewModel.DeleteSelectedItemCommand}"
+                                    Command="{x:Static viewModel:ContactViewModel.StaticDeleteSelectedItemCommand}"
                                     Style="{StaticResource IconButtonStyle}">
                                     <Path
                                         Width="14"
