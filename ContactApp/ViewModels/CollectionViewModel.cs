@@ -34,8 +34,8 @@ namespace ContactApp.ViewModels
             }
         }
 
-        public static CustomCommand DeleteSelectedItemCommand { set; get; }
-        public static CustomCommand AddItemCommand { set; get; }
+        public CustomCommand DeleteSelectedItemCommand { set; get; }
+        public CustomCommand AddItemCommand { set; get; }
 
         public CollectionViewModel()
         {
