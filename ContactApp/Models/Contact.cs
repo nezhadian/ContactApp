@@ -40,9 +40,8 @@ namespace ContactApp.Models
             }
         }
 
-        public TitledItemViewModel EmailsViewModel { get; set; }
-        public TitledItemViewModel NumbersViewModel { get; set; }
-
+        public TitledItemViewModel EmailsViewModel { get; set; } = new TitledItemViewModel();
+        public TitledItemViewModel NumbersViewModel { get; set; } = new TitledItemViewModel();
 
         public bool IsFavorite
         {
