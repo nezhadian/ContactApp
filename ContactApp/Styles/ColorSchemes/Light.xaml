@@ -28,8 +28,10 @@
 
     <!--  Edit Contact Item Page Colors  -->
     <SolidColorBrush x:Key="EditContactPage.Colors.ProfilePicturePlusIconColor" Color="White" />
-    <SolidColorBrush x:Key="EditContactPage.Colors.AddButtonBackground" Color="#eee" />
-    <SolidColorBrush x:Key="EditContactPage.Colors.AddButtonIconColor" Color="Gray" />
+
+    <!--  Titled Item View Model  -->
+    <SolidColorBrush x:Key="TitledItemViewModel.Colors.AddButtonBackground" Color="#eee" />
+    <SolidColorBrush x:Key="TitledItemViewModel.Colors.AddButtonIconColor" Color="Gray" />
 
 
 
