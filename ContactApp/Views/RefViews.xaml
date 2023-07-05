@@ -3,5 +3,6 @@
         <ResourceDictionary Source="/Views/ContactCollectionView.xaml" />
         <ResourceDictionary Source="/Views/TitledItemView.xaml" />
         <ResourceDictionary Source="/Views/TitledItemViewModel.xaml" />
+        <ResourceDictionary Source="/Views/EditableTitledItemViewModel.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
