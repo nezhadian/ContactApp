@@ -11,6 +11,7 @@ namespace ContactApp.ViewModels
 {
     public class ContactViewModel : CollectionViewModel<Contact>
     {
+        public static CustomCommand StaticDeleteSelectedItemCommand { set; get; }
         public static CustomCommand SaveCommand { set; get; }
         public static CustomCommand EditSelectedItem { set; get; }
         static EditContactItemPage EditPage;
@@ -19,6 +20,8 @@ namespace ContactApp.ViewModels
         {
             SaveCommand = new CustomCommand(OnSaveExecuted, SaveCanExecute);
             EditSelectedItem = new CustomCommand(OnEditSelectedItemExecuted, EditSelectedItemCanExecute);
+            StaticDeleteSelectedItemCommand = DeleteSelectedItemCommand;
+
             EditPage = new EditContactItemPage();
         }
 
