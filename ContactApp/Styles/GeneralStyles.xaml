@@ -183,6 +183,8 @@
         <Setter Property="Padding" Value="0,0" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static adonis:Brushes.ForegroundBrush}}" />
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static adonis:Brushes.Layer1BorderBrush}}" />
+        <Setter Property="MinWidth" Value="30" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
