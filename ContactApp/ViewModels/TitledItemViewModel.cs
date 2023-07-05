@@ -15,5 +15,14 @@ namespace ContactApp.ViewModels
             ItemsCollection = new ObservableCollection<TitledItem>();
         }
 
+        protected override bool AddCommandCanExecute(object parameter)
+        {
+            return true;
+        }
+        protected override void OnAddCommandExecuted(object parameter)
+        {
+            ItemsCollection.Add(new TitledItem() {Title = "",Value ="" });
+        }
+
     }
 }
