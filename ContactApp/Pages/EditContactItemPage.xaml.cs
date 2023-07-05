@@ -40,23 +40,5 @@ namespace ContactApp.Pages
         {
             TargetContact = contact;
         }
-
-        private void AddNewEmail_Click(object sender, RoutedEventArgs e)
-        {
-            AddTitledItemToCollection(TargetContact.EmailsCollection, new TitledItem() { Title = "Title", Value = "@gmail.com" });
-        }
-
-        private void AddNewNumber_Click(object sender, RoutedEventArgs e)
-        {
-            AddTitledItemToCollection(TargetContact.NumbersCollection, new TitledItem() { Title = "Title", Value = "+98" });
-        }
-
-        public void AddTitledItemToCollection(ICollection<TitledItem> collection,TitledItem item)
-        {
-            if (collection is null)
-                return;
-
-            collection.Add(item);
-        }
     }
 }
