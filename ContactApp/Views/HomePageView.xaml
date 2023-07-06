@@ -3,20 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI"
     xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:controls="clr-namespace:ContactApp.Controls"
     xmlns:viewModels="clr-namespace:ContactApp.ViewModels">
-    <Style
-        x:Key="HomePage.AddTextBox"
-        BasedOn="{StaticResource {x:Type TextBox}}"
-        TargetType="TextBox">
-        <Setter Property="Height" Value="34" />
-        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="17" />
-        <Setter Property="adonisEx:WatermarkExtension.IsWatermarkVisible" Value="True" />
-        <Setter Property="Padding" Value="17,0" />
-        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static adonis:Brushes.AccentBrush}}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Background" Value="{DynamicResource SecondaryColor}" />
-        <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}" />
-    </Style>
 
     <DataTemplate DataType="{x:Type viewModels:HomePageViewModel}">
         <Grid>
@@ -29,7 +17,21 @@
 
             <!--  Add Contact TextBox  -->
             <Grid Grid.Row="1" Margin="20">
-                <TextBox adonisEx:WatermarkExtension.Watermark="{DynamicResource HomePage.AddTextBox.WatermarkLabel}" Style="{StaticResource HomePage.AddTextBox}" />
+                <controls:IconicTextBox
+                    Height="40"
+                    BorderBrush="{DynamicResource HomePage.Colors.AddTexboxBorderBrush}"
+                    CornerRadius="20"
+                    Placeholder="{DynamicResource HomePage.AddTextBox.WatermarkLabel}"
+                    PlaceholderBrush="{DynamicResource HomePage.Colors.AddTexboxPlaceholderBrush}"
+                    ShadowColor="{DynamicResource GeneralColors.ShadowColor}">
+                    <controls:IconicTextBox.IconContent>
+                        <Path
+                            Width="15"
+                            Data="{StaticResource IconGeometries.Plus}"
+                            Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBox}, Path=BorderBrush}"
+                            Stretch="Uniform" />
+                    </controls:IconicTextBox.IconContent>
+                </controls:IconicTextBox>
             </Grid>
         </Grid>
     </DataTemplate>

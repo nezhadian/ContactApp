@@ -35,6 +35,8 @@
     <SolidColorBrush x:Key="TitledItemViewModel.Colors.AddButtonBackground" Color="#eee" />
     <SolidColorBrush x:Key="TitledItemViewModel.Colors.AddButtonIconColor" Color="Gray" />
 
+    <!--  Add TextBox Colors  -->
+    <SolidColorBrush x:Key="HomePage.Colors.AddTexboxBorderBrush" Color="#00ffb1" />
+    <SolidColorBrush x:Key="HomePage.Colors.AddTexboxPlaceholderBrush" Color="#98b9af" />
 
-    
 </ResourceDictionary>
