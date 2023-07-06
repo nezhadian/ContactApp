@@ -31,20 +31,38 @@ namespace ContactApp
         public static readonly DependencyProperty CurrentPageProperty =
             DependencyProperty.Register("CurrentPage", typeof(object), typeof(MainWindow), new PropertyMetadata());
 
+        private static MainWindow instance;
+        public static MainWindow Instance
+        {
+            get { return instance ?? (MainWindow)Application.Current.MainWindow; }
+            set { instance = value; }
+        }
 
+
+
+
+        HomePageViewModel HomePage;
 
         public MainWindow()
         {
-            CurrentPage = new HomePageViewModel();
+            HomePage = new HomePageViewModel();
+            NavigateToPage(HomePage);
 
             DataContext = this;
+
             InitializeComponent();
+            Instance = this;
         }
 
-        public static void NavigateToPage(object content)
+        public void NavigateToPage(object content)
         {
-            var instance = (MainWindow)Application.Current.MainWindow;
-            instance.CurrentPage = content ;
+            CurrentPage = content;
         }
+        public void NavigateToHome()
+        {
+            NavigateToPage(HomePage);
+        }
+
+
     }
 }
