@@ -11,17 +11,16 @@ namespace ContactApp.ViewModels
     public class ContactViewModel : CollectionViewModel<Contact>
     {
         public static CustomCommand StaticDeleteSelectedItemCommand { set; get; }
-        public static CustomCommand SaveCommand { set; get; }
         public static CustomCommand EditSelectedItem { set; get; }
         static EditContactPageViewModel EditPage;
 
         public ContactViewModel()
         {
-            SaveCommand = new CustomCommand(OnSaveExecuted, SaveCanExecute);
             EditSelectedItem = new CustomCommand(OnEditSelectedItemExecuted, EditSelectedItemCanExecute);
             StaticDeleteSelectedItemCommand = DeleteSelectedItemCommand;
 
             EditPage = new EditContactPageViewModel();
+            EditPage.OnEditResault += EditPage_OnEditResault;
         }
 
         private bool EditSelectedItemCanExecute(object parameter)
@@ -31,16 +30,17 @@ namespace ContactApp.ViewModels
         private void OnEditSelectedItemExecuted(object parameter)
         {
             EditPage.TargetContact = SelectedItem;
-            MainWindow.NavigateToPage(EditPage);
+            MainWindow.Instance.NavigateToPage(EditPage);
+        }
+        private void EditPage_OnEditResault(object sender, EditContactPageViewModel.EditResault resault)
+        {
+            if(resault == EditContactPageViewModel.EditResault.SaveRequested)
+            {
+                ItemsCollection[ItemsCollection.IndexOf(SelectedItem)] = EditPage.TargetContact;
+            }
+
+            MainWindow.Instance.NavigateToHome();
         }
 
-        private bool SaveCanExecute(object parameter)
-        {
-            throw new NotImplementedException();
-        }
-        private void OnSaveExecuted(object parameter)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
