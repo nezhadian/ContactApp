@@ -212,17 +212,15 @@
                                 <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.LastName}" Content="{Binding LastName}" />
                                 <Expander
                                     Margin="0,10,0,0"
+                                    Content="{Binding EmailsViewModel}"
                                     Header="{DynamicResource ContactCollection.Texts.EmailsHeader}"
-                                    Style="{StaticResource ContactCollection.ExpanderStyle}">
-                                    <ContentControl Content="{Binding EmailsViewModel}" />
-                                </Expander>
+                                    Style="{StaticResource ContactCollection.ExpanderStyle}" />
 
                                 <Expander
                                     Margin="0,10,0,0"
+                                    Content="{Binding NumbersViewModel}"
                                     Header="{DynamicResource ContactCollection.Texts.NumbersHeader}"
-                                    Style="{StaticResource ContactCollection.ExpanderStyle}">
-                                    <ContentControl Content="{Binding NumbersViewModel}" />
-                                </Expander>
+                                    Style="{StaticResource ContactCollection.ExpanderStyle}" />
                             </StackPanel>
 
                             <Grid Grid.Row="1" Margin="10,10,10,0">
