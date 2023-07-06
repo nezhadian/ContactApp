@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ContactApp.ViewModels
 {
-    class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
 
         #region INotifyPropertyChanged Implamentation

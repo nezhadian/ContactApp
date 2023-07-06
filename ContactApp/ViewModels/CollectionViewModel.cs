@@ -10,16 +10,8 @@ using System.Threading.Tasks;
 
 namespace ContactApp.ViewModels
 {
-    public class CollectionViewModel<T> : INotifyPropertyChanged
+    public class CollectionViewModel<T> : ViewModelBase
     {
-        #region INotifyPropertyChanged Implamentation
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         public ObservableCollection<T> ItemsCollection { get; set; }
 
         private T _selItem;
