@@ -4,5 +4,6 @@
         <ResourceDictionary Source="/Views/TitledItemView.xaml" />
         <ResourceDictionary Source="/Views/TitledItemViewModel.xaml" />
         <ResourceDictionary Source="/Views/EditableTitledItemViewModel.xaml" />
+        <ResourceDictionary Source="/Views/HomePageView.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
