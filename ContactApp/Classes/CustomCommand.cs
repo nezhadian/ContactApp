@@ -17,10 +17,15 @@ namespace ContactApp
             CanExecuteAsked = canExecute;
         }
 
+        public CustomCommand(CustomCommandExecutedEventHandler executed)
+        {
+            Executed = executed;
+        }
+
         public event EventHandler CanExecuteChanged;
         public bool CanExecute(object parameter)
         {
-            return CanExecuteAsked?.Invoke(parameter) ?? false;
+            return CanExecuteAsked?.Invoke(parameter) ?? true;
         }
         public void Execute(object parameter)
         {
