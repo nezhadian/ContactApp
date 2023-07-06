@@ -11,6 +11,7 @@ namespace ContactApp.ViewModels
 {
     class EditContactPageViewModel : ViewModelBase
     {
+
         private Contact _targetContact;
         public Contact TargetContact
         {
@@ -22,5 +23,25 @@ namespace ContactApp.ViewModels
             }
         }
 
+        public enum EditResault
+        {
+            Canceled, SaveRequested
+        }
+        public delegate void EditResaultEventHandler(object sender,EditResault resault);
+        public event EditResaultEventHandler OnEditResault;
+
+        public CustomCommand SendEditResaultCommand { set; get; }
+
+        public EditContactPageViewModel()
+        {
+            SendEditResaultCommand = new CustomCommand(OnEditResaultSended);
+        }
+
+        private void OnEditResaultSended(object parameter)
+        {
+            if (parameter is string resault)
+                OnEditResault?.Invoke(this, (EditResault)Enum.Parse(typeof(EditResault), resault));
+            
+        }
     }
 }

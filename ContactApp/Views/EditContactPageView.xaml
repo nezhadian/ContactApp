@@ -185,9 +185,15 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
-                    <Button Content="Cancel" Style="{StaticResource Buttons.Secondary}" />
+                    <Button
+                        Command="{Binding SendEditResaultCommand}"
+                        CommandParameter="Canceled"
+                        Content="Cancel"
+                        Style="{StaticResource Buttons.Secondary}" />
                     <Button
                         Margin="10,0,0,0"
+                        Command="{Binding SendEditResaultCommand}"
+                        CommandParameter="SaveRequested"
                         Content="Save"
                         Style="{StaticResource Buttons.CTA}" />
                 </StackPanel>
