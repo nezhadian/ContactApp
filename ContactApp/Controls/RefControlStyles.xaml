@@ -2,5 +2,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Controls/Styles/TitleContentControl.xaml" />
         <ResourceDictionary Source="/Controls/Styles/IconTextContent.xaml" />
+        <ResourceDictionary Source="/Controls/Styles/IconicTextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
