@@ -1,5 +1,4 @@
 ﻿using AdonisUI.Controls;
-using ContactApp.Pages;
 using ContactApp.ViewModels;
 using System;
 using System.Collections.Generic;
