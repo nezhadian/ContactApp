@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace ContactApp.Models
 {
-    public class Contact : ModelsBase
+    public class Contact : ModelsBase,ICloneable
     {
         #region Private Fields
         private string _firstName;
@@ -60,6 +60,19 @@ namespace ContactApp.Models
                 _profilePicture = value;
                 OnPropertyChanged();
             }
+        }
+
+        public object Clone()
+        {
+            return new Contact()
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                EmailsViewModel = (TitledItemViewModel)EmailsViewModel.Clone(),
+                NumbersViewModel = (TitledItemViewModel)NumbersViewModel.Clone(),
+                IsFavorite = IsFavorite,
+                ProfilePicture = ProfilePicture
+            };
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ContactApp.ViewModels
 {
-    public class TitledItemViewModel : CollectionViewModel<TitledItem>
+    public class TitledItemViewModel : CollectionViewModel<TitledItem>,ICloneable
     {
         public TitledItemViewModel()
         {
@@ -22,6 +22,14 @@ namespace ContactApp.ViewModels
         protected override void OnAddCommandExecuted(object parameter)
         {
             ItemsCollection.Add(new TitledItem() {Title = "",Value ="" });
+        }
+
+        public object Clone()
+        {
+            return new TitledItemViewModel()
+            {
+                ItemsCollection = new ObservableCollection<TitledItem>(ItemsCollection)
+            };
         }
 
     }
