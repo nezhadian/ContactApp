@@ -42,7 +42,6 @@
         </StackPanel>
     </DataTemplate>
 
-
     <!--  IsFavorite Template  -->
     <Style x:Key="ContactCollection.IsFavoriteCheckBox" TargetType="CheckBox">
         <Setter Property="Cursor" Value="Hand" />
@@ -87,6 +86,64 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  Details Template  -->
+    <Style
+        x:Key="ContactCollection.ExpanderStyle"
+        BasedOn="{StaticResource {x:Type Expander}}"
+        TargetType="Expander">
+        <Setter Property="Foreground" Value="{DynamicResource ContactCollection.Colors.TitlesColor}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="500" />
+        <Setter Property="IsExpanded" Value="True" />
+    </Style>
+    <DataTemplate x:Key="ContactCollection.RowDetailsTemplate">
+        <Grid Margin="0,5,0,15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.FirstName}" Content="{Binding FirstName}" />
+                <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.LastName}" Content="{Binding LastName}" />
+                <Expander
+                    Margin="0,10,0,0"
+                    Content="{Binding EmailsViewModel}"
+                    Header="{DynamicResource ContactCollection.Texts.EmailsHeader}"
+                    Style="{StaticResource ContactCollection.ExpanderStyle}" />
+
+                <Expander
+                    Margin="0,10,0,0"
+                    Content="{Binding NumbersViewModel}"
+                    Header="{DynamicResource ContactCollection.Texts.NumbersHeader}"
+                    Style="{StaticResource ContactCollection.ExpanderStyle}" />
+            </StackPanel>
+
+            <Grid Grid.Row="1" Margin="10,10,10,0">
+                <Button
+                    HorizontalAlignment="Right"
+                    Command="{x:Static viewModel:ContactViewModel.StaticDeleteSelectedItemCommand}"
+                    Style="{StaticResource IconButtonStyle}">
+                    <Path
+                        Width="14"
+                        Data="{StaticResource IconGeometries.Delete}"
+                        Fill="{DynamicResource ContactCollection.Colors.DeleteBinColor}"
+                        Stretch="Uniform" />
+                </Button>
+                <Button
+                    HorizontalAlignment="Center"
+                    Command="{x:Static viewModel:ContactViewModel.EditSelectedItem}"
+                    Style="{StaticResource IconTextButton.Style}">
+                    <controls:IconTextContent
+                        Content="{DynamicResource ContactCollection.Texts.EditButtonText}"
+                        IconBrush="{DynamicResource IconTextButton.TextColor}"
+                        IconData="{StaticResource IconGeometries.Edit}"
+                        IconWidth="14" />
+                </Button>
+            </Grid>
+        </Grid>
+    </DataTemplate>
 
     <!--  Items Container Style  -->
     <Style BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="DataGridCell">
@@ -153,22 +210,12 @@
         </Setter>
     </Style>
 
-    <!--  Emails And Numbers Expander Style  -->
-    <Style
-        x:Key="ContactCollection.ExpanderStyle"
-        BasedOn="{StaticResource {x:Type Expander}}"
-        TargetType="Expander">
-        <Setter Property="Foreground" Value="{DynamicResource ContactCollection.Colors.TitlesColor}" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontWeight" Value="500" />
-        <Setter Property="IsExpanded" Value="True" />
-    </Style>
-
     <DataTemplate DataType="{x:Type viewModel:ContactViewModel}">
         <Grid>
             <Grid.Resources>
                 <CollectionViewSource x:Key="ContactCollectionView" Source="{Binding ItemsCollection}" />
             </Grid.Resources>
+
             <DataGrid
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
@@ -176,9 +223,11 @@
                 HeadersVisibility="None"
                 ItemContainerStyle="{StaticResource ContactCollection.DataGridItemContainer}"
                 ItemsSource="{Binding Source={StaticResource ContactCollectionView}}"
+                RowDetailsTemplate="{StaticResource ContactCollection.RowDetailsTemplate}"
                 RowDetailsVisibilityMode="VisibleWhenSelected"
                 SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 SelectionMode="Single">
+
                 <DataGrid.Columns>
                     <!--  Profile Picture  -->
                     <DataGridTemplateColumn CellTemplate="{StaticResource ContactCollection.ProfilePicture}" IsReadOnly="True" />
@@ -197,59 +246,6 @@
                         ElementStyle="{StaticResource ContactCollection.IsFavoriteCheckBox}"
                         IsReadOnly="True" />
                 </DataGrid.Columns>
-
-                <DataGrid.RowDetailsTemplate>
-                    <!--  Details  -->
-                    <DataTemplate>
-                        <Grid Margin="0,5,0,15">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel>
-                                <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.FirstName}" Content="{Binding FirstName}" />
-                                <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.LastName}" Content="{Binding LastName}" />
-                                <Expander
-                                    Margin="0,10,0,0"
-                                    Content="{Binding EmailsViewModel}"
-                                    Header="{DynamicResource ContactCollection.Texts.EmailsHeader}"
-                                    Style="{StaticResource ContactCollection.ExpanderStyle}" />
-
-                                <Expander
-                                    Margin="0,10,0,0"
-                                    Content="{Binding NumbersViewModel}"
-                                    Header="{DynamicResource ContactCollection.Texts.NumbersHeader}"
-                                    Style="{StaticResource ContactCollection.ExpanderStyle}" />
-                            </StackPanel>
-
-                            <Grid Grid.Row="1" Margin="10,10,10,0">
-                                <Button
-                                    HorizontalAlignment="Right"
-                                    Command="{x:Static viewModel:ContactViewModel.StaticDeleteSelectedItemCommand}"
-                                    Style="{StaticResource IconButtonStyle}">
-                                    <Path
-                                        Width="14"
-                                        Data="{StaticResource IconGeometries.Delete}"
-                                        Fill="{DynamicResource ContactCollection.Colors.DeleteBinColor}"
-                                        Stretch="Uniform" />
-                                </Button>
-                                <Button
-                                    HorizontalAlignment="Center"
-                                    Command="{x:Static viewModel:ContactViewModel.EditSelectedItem}"
-                                    Style="{StaticResource IconTextButton.Style}">
-                                    <controls:IconTextContent
-                                        Content="{DynamicResource ContactCollection.Texts.EditButtonText}"
-                                        IconBrush="{DynamicResource IconTextButton.TextColor}"
-                                        IconData="{StaticResource IconGeometries.Edit}"
-                                        IconWidth="14" />
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
-
-
             </DataGrid>
         </Grid>
     </DataTemplate>
