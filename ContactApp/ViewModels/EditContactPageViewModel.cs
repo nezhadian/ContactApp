@@ -18,7 +18,7 @@ namespace ContactApp.ViewModels
             get => _targetContact;
             set
             {
-                _targetContact = value;
+                _targetContact = (Contact)value.Clone();
                 OnPropertyChanged();
             }
         }
