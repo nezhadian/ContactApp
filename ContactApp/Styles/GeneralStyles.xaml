@@ -154,8 +154,9 @@
                             <DropShadowEffect
                                 BlurRadius="5"
                                 Direction="290"
+                                Opacity="0.16"
                                 ShadowDepth="3"
-                                Color="{DynamicResource IconTextButton.Shadow}" />
+                                Color="{DynamicResource GeneralColors.ShadowColor}" />
                         </Border.Effect>
                     </Border>
                     <ControlTemplate.Triggers>

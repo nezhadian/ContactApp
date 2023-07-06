@@ -1,4 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="GeneralColors.ShadowColor">#000000</Color>
+
     <!--  Contact Collection Colors  -->
     <SolidColorBrush x:Key="ContactCollection.Colors.Heart" Color="#f06" />
     <SolidColorBrush x:Key="ContactCollection.Colors.UnSelectedHeart" Color="LightGray" />
@@ -23,7 +26,6 @@
     <SolidColorBrush x:Key="IconTextButton.Background" Color="White" />
     <SolidColorBrush x:Key="IconTextButton.Hover" Color="#ccc" />
     <SolidColorBrush x:Key="IconTextButton.Pressed" Color="#ddd" />
-    <Color x:Key="IconTextButton.Shadow">#D7D7D7</Color>
     <SolidColorBrush x:Key="IconTextButton.TextColor" Color="#444444" />
 
     <!--  Edit Contact Item Page Colors  -->
@@ -34,5 +36,5 @@
     <SolidColorBrush x:Key="TitledItemViewModel.Colors.AddButtonIconColor" Color="Gray" />
 
 
-
+    
 </ResourceDictionary>
