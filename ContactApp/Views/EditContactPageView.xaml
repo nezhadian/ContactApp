@@ -1,0 +1,200 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:AdonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:controls="clr-namespace:ContactApp.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:ContactApp.Models"
+    xmlns:viewModels="clr-namespace:ContactApp.ViewModels">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Views/ContactCollectionView.xaml" />
+        <ResourceDictionary Source="/Views/EditableTitledItemViewModel.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="EditContactPage.ProfilePictureButtonStyle" TargetType="Button">
+        <Setter Property="Width" Value="{StaticResource ContactCollection.ProfilePictureDimension}" />
+        <Setter Property="Height" Value="{StaticResource ContactCollection.ProfilePictureDimension}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{StaticResource ContactCollection.ProfilePictureCornerRadius}" />
+                        <Border
+                            x:Name="mask"
+                            Background="#000000"
+                            CornerRadius="{StaticResource ContactCollection.ProfilePictureCornerRadius}"
+                            Opacity="0.08" />
+
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="mask" Property="Opacity" Value="0" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="mask" Property="Opacity" Value="0.15" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="EditContactPage.EditableTitleContentControlStyle" TargetType="controls:TitleContentControl">
+        <Setter Property="Padding" Value="15,7" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="Background" Value="{DynamicResource TitledContentControl.BackgroundColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource TitledContentControl.ContentColor}" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="FontSize" Value="14" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:TitleContentControl">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontWeight="Normal"
+                                Foreground="{DynamicResource TitledContentControl.TitleColor}"
+                                Text="{TemplateBinding Title}" />
+
+                            <TextBox
+                                Grid.Column="1"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Text="{TemplateBinding Content}" />
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource TitledContentControl.HoverColor}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate DataType="{x:Type viewModels:EditContactPageViewModel}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="75" />
+            </Grid.RowDefinitions>
+
+            <!--  Header  -->
+            <Grid
+                Grid.Row="0"
+                Margin="10,0"
+                VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="{Binding TargetContact.ProfilePicture}"
+                    Style="{StaticResource EditContactPage.ProfilePictureButtonStyle}">
+
+                    <Path
+                        Width="14"
+                        Data="{StaticResource IconGeometries.Plus}"
+                        Fill="{DynamicResource EditContactPage.Colors.ProfilePicturePlusIconColor}"
+                        Stretch="Uniform" />
+                </Button>
+
+                <!--  First Name and Last Name Use The ContactViewModel Template For this  -->
+                <ContentControl
+                    Grid.Column="2"
+                    Content="{Binding TargetContact}"
+                    ContentTemplate="{StaticResource ContactCollection.FirstAndLastName}" />
+
+            </Grid>
+
+            <!--  Edit Properties  -->
+            <ScrollViewer
+                Grid.Row="1"
+                Margin="0,10,0,0"
+                AdonisEx:ScrollViewerExtension.VerticalScrollBarPlacement="Overlay"
+                VerticalScrollBarVisibility="Visible">
+                <StackPanel Margin="0,0,0,200">
+                    <!--  First Name  -->
+                    <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.FirstName}">
+                        <TextBox
+                            Foreground="{DynamicResource TitledContentControl.ContentColor}"
+                            Style="{StaticResource SimpleTextBoxStyle}"
+                            Text="{Binding TargetContact.FirstName, UpdateSourceTrigger=PropertyChanged}" />
+                    </controls:TitleContentControl>
+
+                    <!--  Last Name  -->
+                    <controls:TitleContentControl Title="{DynamicResource ContactCollection.Texts.LastName}">
+                        <TextBox
+                            Foreground="{DynamicResource TitledContentControl.ContentColor}"
+                            Style="{StaticResource SimpleTextBoxStyle}"
+                            Text="{Binding TargetContact.LastName, UpdateSourceTrigger=PropertyChanged}" />
+                    </controls:TitleContentControl>
+
+                    <Expander
+                        Margin="0,5,0,0"
+                        Header="{DynamicResource ContactCollection.Texts.EmailsHeader}"
+                        Style="{StaticResource ContactCollection.ExpanderStyle}">
+                        <ContentControl Content="{Binding TargetContact.EmailsViewModel}" ContentTemplate="{StaticResource TitledItemViewModel.EditableTemplate}" />
+                    </Expander>
+
+                    <Expander
+                        Margin="0,10,0,0"
+                        Header="{DynamicResource ContactCollection.Texts.NumbersHeader}"
+                        Style="{StaticResource ContactCollection.ExpanderStyle}">
+                        <ContentControl Content="{Binding TargetContact.NumbersViewModel}" ContentTemplate="{StaticResource TitledItemViewModel.EditableTemplate}" />
+                    </Expander>
+
+
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <!--  Buttons  -->
+            <Grid Grid.Row="2">
+
+                <StackPanel
+                    Margin="20"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button Content="Cancel" Style="{StaticResource Buttons.Secondary}" />
+                    <Button
+                        Margin="10,0,0,0"
+                        Content="Save"
+                        Style="{StaticResource Buttons.CTA}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+
+
+</ResourceDictionary>
