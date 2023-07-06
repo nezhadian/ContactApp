@@ -24,26 +24,28 @@ namespace ContactApp
     /// </summary>
     public partial class MainWindow : AdonisWindow
     {
-        public Page CurrentPage
+        public object CurrentPage
         {
-            get { return (Page)GetValue(CurrentPageProperty); }
+            get { return (object)GetValue(CurrentPageProperty); }
             set { SetValue(CurrentPageProperty, value); }
         }
         public static readonly DependencyProperty CurrentPageProperty =
-            DependencyProperty.Register("CurrentPage", typeof(Page), typeof(MainWindow), new PropertyMetadata());
+            DependencyProperty.Register("CurrentPage", typeof(object), typeof(MainWindow), new PropertyMetadata());
+
+
 
         public MainWindow()
         {
-            CurrentPage = new HomePage();
+            CurrentPage = new HomePageViewModel();
 
             DataContext = this;
             InitializeComponent();
         }
 
-        public static void NavigateToPage(Page page)
+        public static void NavigateToPage(object content)
         {
             var instance = (MainWindow)Application.Current.MainWindow;
-            instance.CurrentPage = page;
+            instance.CurrentPage = content ;
         }
     }
 }
