@@ -7,33 +7,7 @@
     xmlns:viewModels="clr-namespace:ContactApp.ViewModels">
 
     <DataTemplate DataType="{x:Type viewModels:HomePageViewModel}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-
-            <ContentControl Content="{Binding ContactViewModel}" />
-
-            <!--  Add Contact TextBox  -->
-            <Grid Grid.Row="1" Margin="20">
-                <controls:IconicTextBox
-                    Height="40"
-                    BorderBrush="{DynamicResource HomePage.Colors.AddTexboxBorderBrush}"
-                    CornerRadius="20"
-                    Placeholder="{DynamicResource HomePage.AddTextBox.WatermarkLabel}"
-                    PlaceholderBrush="{DynamicResource HomePage.Colors.AddTexboxPlaceholderBrush}"
-                    ShadowColor="{DynamicResource GeneralColors.ShadowColor}">
-                    <controls:IconicTextBox.IconContent>
-                        <Path
-                            Width="15"
-                            Data="{StaticResource IconGeometries.Plus}"
-                            Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBox}, Path=BorderBrush}"
-                            Stretch="Uniform" />
-                    </controls:IconicTextBox.IconContent>
-                </controls:IconicTextBox>
-            </Grid>
-        </Grid>
+        <ContentControl Content="{Binding ContactViewModel}" />
     </DataTemplate>
 
 

@@ -282,12 +282,33 @@
         </Setter>
     </Style>
 
+    <!--  Add Contact Texbox Style  -->
+    <Style
+        x:Key="ContactCollection.AddContactTextBoxStyle"
+        BasedOn="{StaticResource {x:Type controls:IconicTextBox}}"
+        TargetType="controls:IconicTextBox">
+        <Setter Property="Height" Value="40" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ContactCollection.Colors.AddTexboxBorderBrush}" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="PlaceholderBrush" Value="{DynamicResource ContactCollection.Colors.AddTexboxPlaceholderBrush}" />
+        <Setter Property="ShadowColor" Value="{DynamicResource GeneralColors.ShadowColor}" />
+        <Setter Property="IconContent">
+            <Setter.Value>
+                <Path
+                    Width="15"
+                    Data="{StaticResource IconGeometries.Plus}"
+                    Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBox}, Path=BorderBrush}"
+                    Stretch="Uniform" />
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <DataTemplate DataType="{x:Type viewModel:ContactViewModel}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
             <!--  Search and Filter Controls  -->
@@ -360,6 +381,14 @@
                         IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
+
+            <!--  Add Contact TextBox  -->
+            <Grid Grid.Row="2" Margin="20">
+                <controls:IconicTextBox
+                    EnterCommand="{Binding AddItemCommand}"
+                    Placeholder="{DynamicResource ContactCollection.Texts.AddTextBoxPlaceholder}"
+                    Style="{StaticResource ContactCollection.AddContactTextBoxStyle}" />
+            </Grid>
         </Grid>
     </DataTemplate>
 
