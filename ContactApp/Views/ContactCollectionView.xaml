@@ -210,6 +210,28 @@
         </Setter>
     </Style>
 
+    <!--  Search Texbox Style  -->
+    <Style
+        x:Key="ContactCollection.SearchTextboxStyle"
+        BasedOn="{StaticResource {x:Type controls:IconicTextBox}}"
+        TargetType="controls:IconicTextBox">
+
+        <Setter Property="Height" Value="40" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ContactCollection.Colors.SearchBorderBrush}" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="PlaceholderBrush" Value="{DynamicResource ContactCollection.Colors.SearchPlaceholderBrush}" />
+        <Setter Property="ShadowColor" Value="{DynamicResource GeneralColors.ShadowColor}" />
+        <Setter Property="IconContent">
+            <Setter.Value>
+                <Path
+                    Width="16"
+                    Data="{StaticResource IconGeometries.Search}"
+                    Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBox}, Path=BorderBrush}"
+                    Stretch="Uniform" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <DataTemplate DataType="{x:Type viewModel:ContactViewModel}">
         <Grid>
             <Grid.RowDefinitions>
@@ -229,7 +251,12 @@
                 </Grid.ColumnDefinitions>
 
                 <!--  Search Textbox  -->
-                <TextBox Grid.ColumnSpan="2" Text="{Binding FilterKeyword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <controls:IconicTextBox
+                    Grid.ColumnSpan="2"
+                    Margin="20,10"
+                    Placeholder="Search"
+                    Style="{StaticResource ContactCollection.SearchTextboxStyle}"
+                    Text="{Binding FilterKeyword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
                 <!--  Show All ToggleButton  -->
                 <ToggleButton
@@ -272,7 +299,7 @@
                     <!--  IsFavorite  -->
                     <DataGridCheckBoxColumn
                         Width="50"
-                        Binding="{Binding IsFavorite}"
+                        Binding="{Binding IsFavorite, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         CellStyle="{StaticResource ContactCollection.IsFavoriteCellStyle}"
                         ElementStyle="{StaticResource ContactCollection.IsFavoriteCheckBox}"
                         IsReadOnly="True" />

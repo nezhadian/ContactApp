@@ -10,6 +10,8 @@
     <SolidColorBrush x:Key="ContactCollection.Colors.TitlesColor" Color="#656565" />
     <SolidColorBrush x:Key="ContactCollection.Colors.ItemsDetailBackgroundColor" Color="#f0f0f0" />
     <SolidColorBrush x:Key="ContactCollection.Colors.DeleteBinColor" Color="#ff6767" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.SearchBorderBrush" Color="#bfbfbf" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.SearchPlaceholderBrush" Color="#9f9f9f" />
 
 
     <!--  Controls Color  -->
