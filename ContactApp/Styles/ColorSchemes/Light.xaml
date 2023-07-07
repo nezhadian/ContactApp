@@ -12,6 +12,10 @@
     <SolidColorBrush x:Key="ContactCollection.Colors.DeleteBinColor" Color="#ff6767" />
     <SolidColorBrush x:Key="ContactCollection.Colors.SearchBorderBrush" Color="#bfbfbf" />
     <SolidColorBrush x:Key="ContactCollection.Colors.SearchPlaceholderBrush" Color="#9f9f9f" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.FilterToggleButtons.NormalColor" Color="#bfbfbf" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.FilterToggleButtons.CheckedColor" Color="#00ffb1" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.FilterToggleButtons.BackgroundColor" Color="#fbfbfb" />
+    <SolidColorBrush x:Key="ContactCollection.Colors.FilterToggleButtons.HoverColor" Color="#f7f7f7" />
 
 
     <!--  Controls Color  -->

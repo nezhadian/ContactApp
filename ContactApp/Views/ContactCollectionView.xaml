@@ -217,6 +217,8 @@
         TargetType="controls:IconicTextBox">
 
         <Setter Property="Height" Value="40" />
+        <Setter Property="BorderThickness" Value="1.5" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="BorderBrush" Value="{DynamicResource ContactCollection.Colors.SearchBorderBrush}" />
         <Setter Property="CornerRadius" Value="10" />
         <Setter Property="PlaceholderBrush" Value="{DynamicResource ContactCollection.Colors.SearchPlaceholderBrush}" />
@@ -231,6 +233,55 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--  Filter ToggleButtons Style  -->
+    <Style x:Key="ContactCollection.FilterToggleButtonsStyle" TargetType="ToggleButton">
+        <Setter Property="Background" Value="{DynamicResource ContactCollection.Colors.FilterToggleButtons.BackgroundColor}" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <Path
+                            x:Name="icon"
+                            Width="18"
+                            Data="{TemplateBinding Content}"
+                            Fill="{DynamicResource ContactCollection.Colors.FilterToggleButtons.NormalColor}"
+                            Stretch="Uniform" />
+
+                        <Border.Effect>
+                            <DropShadowEffect
+                                BlurRadius="5"
+                                Direction="290"
+                                Opacity="0.16"
+                                ShadowDepth="3"
+                                Color="{DynamicResource GeneralColors.ShadowColor}" />
+                        </Border.Effect>
+                    </Border>
+                    <ControlTemplate.Triggers>
+
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ContactCollection.Colors.FilterToggleButtons.HoverColor}" />
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="{DynamicResource ContactCollection.Colors.FilterToggleButtons.CheckedColor}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <DataTemplate DataType="{x:Type viewModel:ContactViewModel}">
         <Grid>
@@ -261,15 +312,19 @@
                 <!--  Show All ToggleButton  -->
                 <ToggleButton
                     Grid.Row="1"
-                    Content="Contacts"
-                    IsChecked="{Binding OnlyShowFavorites, Converter={StaticResource Bool2InverseBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    Margin="5,0,5,5"
+                    Content="{StaticResource IconGeometries.Contacts}"
+                    IsChecked="{Binding OnlyShowFavorites, Converter={StaticResource Bool2InverseBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Style="{StaticResource ContactCollection.FilterToggleButtonsStyle}" />
 
                 <!--  Show Only Favorites Toggle Button  -->
                 <ToggleButton
                     Grid.Row="1"
                     Grid.Column="1"
-                    Content="Favorites"
-                    IsChecked="{Binding OnlyShowFavorites, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    Margin="0,0,5,5"
+                    Content="{StaticResource IconGeometries.Heart}"
+                    IsChecked="{Binding OnlyShowFavorites, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Style="{StaticResource ContactCollection.FilterToggleButtonsStyle}" />
             </Grid>
 
             <!--  Data Viewing  -->
