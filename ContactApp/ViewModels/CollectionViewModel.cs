@@ -12,7 +12,16 @@ namespace ContactApp.ViewModels
 {
     public class CollectionViewModel<T> : ViewModelBase
     {
-        public ObservableCollection<T> ItemsCollection { get; set; }
+        private ObservableCollection<T> _itemsCollection;
+        public virtual ObservableCollection<T> ItemsCollection
+        {
+            get => _itemsCollection;
+            set
+            {
+                _itemsCollection = value;
+                OnPropertyChanged();
+            }
+        }
 
         private T _selItem;
         public T SelectedItem
