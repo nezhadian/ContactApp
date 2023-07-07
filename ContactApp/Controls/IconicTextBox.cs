@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace ContactApp.Controls
@@ -52,6 +53,26 @@ namespace ContactApp.Controls
         public static readonly DependencyProperty ShadowColorProperty =
             DependencyProperty.Register("ShadowColor", typeof(Color), typeof(IconicTextBox), new PropertyMetadata());
 
+        public ICommand EnterCommand
+        {
+            get { return (ICommand)GetValue(EnterCommandProperty); }
+            set { SetValue(EnterCommandProperty, value); }
+        }
+        public static readonly DependencyProperty EnterCommandProperty =
+            DependencyProperty.Register("EnterCommand", typeof(ICommand), typeof(IconicTextBox), new PropertyMetadata());
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            if(e.Key == Key.Return)
+            {
+                if (EnterCommand is null)
+                    return;
+
+                if (EnterCommand.CanExecute(Text))
+                    EnterCommand.Execute(Text);
+            }
+        }
 
 
     }
