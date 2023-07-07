@@ -3,4 +3,5 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:ContactApp.Converters">
     <converters:InverseBool2VisibilityConverter x:Key="InverseBool2VisibilityConverter" />
+    <converters:Bool2InverseBoolConverter x:Key="Bool2InverseBoolConverter" />
 </ResourceDictionary>
