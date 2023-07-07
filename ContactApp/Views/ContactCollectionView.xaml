@@ -212,17 +212,48 @@
 
     <DataTemplate DataType="{x:Type viewModel:ContactViewModel}">
         <Grid>
-            <Grid.Resources>
-                <CollectionViewSource x:Key="ContactCollectionView" Source="{Binding ItemsCollection}" />
-            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
+            <!--  Search and Filter Controls  -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Search Textbox  -->
+                <TextBox Grid.ColumnSpan="2" Text="{Binding FilterKeyword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                <!--  Show All ToggleButton  -->
+                <ToggleButton
+                    Grid.Row="1"
+                    Content="Contacts"
+                    IsChecked="{Binding OnlyShowFavorites, Converter={StaticResource Bool2InverseBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                <!--  Show Only Favorites Toggle Button  -->
+                <ToggleButton
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Content="Favorites"
+                    IsChecked="{Binding OnlyShowFavorites, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            </Grid>
+
+            <!--  Data Viewing  -->
             <DataGrid
+                Grid.Row="1"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 GridLinesVisibility="None"
                 HeadersVisibility="None"
                 ItemContainerStyle="{StaticResource ContactCollection.DataGridItemContainer}"
-                ItemsSource="{Binding Source={StaticResource ContactCollectionView}}"
+                ItemsSource="{Binding FilteredCollectionView}"
                 RowDetailsTemplate="{StaticResource ContactCollection.RowDetailsTemplate}"
                 RowDetailsVisibilityMode="VisibleWhenSelected"
                 SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
