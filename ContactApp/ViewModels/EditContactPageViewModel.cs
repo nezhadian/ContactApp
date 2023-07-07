@@ -36,12 +36,16 @@ namespace ContactApp.ViewModels
         {
             SendEditResaultCommand = new CustomCommand(OnEditResaultSended);
         }
-
         private void OnEditResaultSended(object parameter)
         {
             if (parameter is string resault)
                 OnEditResault?.Invoke(this, (EditResault)Enum.Parse(typeof(EditResault), resault));
             
+        }
+
+        public void Edit(Contact contact)
+        {
+            TargetContact = contact;
         }
     }
 }

@@ -21,6 +21,26 @@ namespace ContactApp.ViewModels
             EditPage.OnEditResault += EditPage_OnEditResault;
         }
 
+        protected override bool AddCommandCanExecute(object parameter)
+        {
+            return true;
+        }
+        protected override void OnAddCommandExecuted(object parameter)
+        {
+            string text = parameter.ToString();
+            int splitIndex = text.IndexOf(' ');
+            string firstName = text[..splitIndex];
+            string lastName = text[splitIndex..];
+            Contact newContact = new Contact()
+            {
+                FirstName = firstName,
+                LastName = lastName
+            };
+
+            OpenEditingPageFor(newContact);
+        }
+
+        #region Filtering
         private bool _onlyShowFavorites;
         public bool OnlyShowFavorites
         {
@@ -46,6 +66,7 @@ namespace ContactApp.ViewModels
                         item.LastName.Contains(FilterKeyword, StringComparison.InvariantCultureIgnoreCase);
             }
         }
+        #endregion
 
         #region Edit
         public static CustomCommand EditSelectedItem { set; get; }
@@ -56,18 +77,32 @@ namespace ContactApp.ViewModels
         }
         private void OnEditSelectedItemExecuted(object parameter)
         {
-            EditPage.TargetContact = SelectedItem;
-            MainWindow.Instance.NavigateToPage(EditPage);
+            OpenEditingPageFor(SelectedItem);
         }
         private void EditPage_OnEditResault(object sender, EditContactPageViewModel.EditResault resault)
         {
             if (resault == EditContactPageViewModel.EditResault.SaveRequested)
             {
-                ItemsCollection[ItemsCollection.IndexOf(SelectedItem)] = EditPage.TargetContact;
+                int selItemIndex = ItemsCollection.IndexOf(SelectedItem);
+                if(selItemIndex == -1)
+                {
+                    ItemsCollection.Add(EditPage.TargetContact);
+                }
+                else
+                {
+                    ItemsCollection[selItemIndex] = EditPage.TargetContact;
+                }
             }
 
             MainWindow.Instance.NavigateToHome();
         }
+
+        private void OpenEditingPageFor(Contact contact)
+        {
+            EditPage.Edit(contact);
+            MainWindow.Instance.NavigateToPage(EditPage);
+        }
+
         #endregion
 
     }
