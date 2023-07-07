@@ -8,11 +8,9 @@ using System.Windows;
 
 namespace ContactApp.ViewModels
 {
-    public class ContactViewModel : CollectionViewModel<Contact>
+    public class ContactViewModel : FilterCollectionViewModel<Contact>
     {
         public static CustomCommand StaticDeleteSelectedItemCommand { set; get; }
-        public static CustomCommand EditSelectedItem { set; get; }
-        static EditContactPageViewModel EditPage;
 
         public ContactViewModel()
         {
@@ -23,6 +21,35 @@ namespace ContactApp.ViewModels
             EditPage.OnEditResault += EditPage_OnEditResault;
         }
 
+        private bool _onlyShowFavorites;
+        public bool OnlyShowFavorites
+        {
+            get => _onlyShowFavorites;
+            set
+            {
+                _onlyShowFavorites = value;
+                OnPropertyChanged();
+                ReFilter();
+            }
+        }
+        public override bool FilterItems(Contact item)
+        {
+            if (OnlyShowFavorites)
+            {
+                return item.IsFavorite && 
+                    (item.FirstName.Contains(FilterKeyword, StringComparison.InvariantCultureIgnoreCase) || 
+                        item.LastName.Contains(FilterKeyword, StringComparison.InvariantCultureIgnoreCase));
+            }
+            else
+            {
+                return item.FirstName.Contains(FilterKeyword, StringComparison.InvariantCultureIgnoreCase) ||
+                        item.LastName.Contains(FilterKeyword, StringComparison.InvariantCultureIgnoreCase);
+            }
+        }
+
+        #region Edit
+        public static CustomCommand EditSelectedItem { set; get; }
+        static EditContactPageViewModel EditPage;
         private bool EditSelectedItemCanExecute(object parameter)
         {
             return SelectedItem != null;
@@ -34,13 +61,14 @@ namespace ContactApp.ViewModels
         }
         private void EditPage_OnEditResault(object sender, EditContactPageViewModel.EditResault resault)
         {
-            if(resault == EditContactPageViewModel.EditResault.SaveRequested)
+            if (resault == EditContactPageViewModel.EditResault.SaveRequested)
             {
                 ItemsCollection[ItemsCollection.IndexOf(SelectedItem)] = EditPage.TargetContact;
             }
 
             MainWindow.Instance.NavigateToHome();
         }
+        #endregion
 
     }
 }
