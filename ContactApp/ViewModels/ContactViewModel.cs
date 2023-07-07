@@ -29,13 +29,17 @@ namespace ContactApp.ViewModels
         {
             string text = parameter.ToString();
             int splitIndex = text.IndexOf(' ');
-            string firstName = text[..splitIndex];
-            string lastName = text[splitIndex..];
-            Contact newContact = new Contact()
+            Contact newContact = new Contact();
+
+            if (splitIndex == -1)
             {
-                FirstName = firstName,
-                LastName = lastName
-            };
+                newContact.FirstName = text;
+            }
+            else
+            {
+                newContact.FirstName = text[..splitIndex];
+                newContact.LastName = text[splitIndex..];
+            }
 
             OpenEditingPageFor(newContact);
         }
