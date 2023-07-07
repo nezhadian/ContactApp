@@ -62,6 +62,12 @@ namespace ContactApp.Models
             }
         }
 
+        public Contact()
+        {
+            Random r = new Random();
+            ProfilePicture = new SolidColorBrush(Color.FromRgb((byte)r.Next(0, 255), (byte)r.Next(0, 255), (byte)r.Next(0, 255)));
+        }
+
         public object Clone()
         {
             return new Contact()
